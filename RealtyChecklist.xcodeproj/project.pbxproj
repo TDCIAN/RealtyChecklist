@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E20D74F285EFB9500FBE67C /* CategoryTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E20D74E285EFB9500FBE67C /* CategoryTitleView.swift */; };
+		1E20D751285EFDD800FBE67C /* TwoAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E20D750285EFDD800FBE67C /* TwoAnswerView.swift */; };
+		1E20D753285EFDF300FBE67C /* ThreeAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E20D752285EFDF300FBE67C /* ThreeAnswerView.swift */; };
 		1E6B0FC6285DF620006DBF92 /* RealtyChecklistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6B0FC5285DF620006DBF92 /* RealtyChecklistApp.swift */; };
 		1E6B0FC8285DF620006DBF92 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6B0FC7285DF620006DBF92 /* ContentView.swift */; };
 		1E6B0FCA285DF621006DBF92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E6B0FC9285DF621006DBF92 /* Assets.xcassets */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E20D74E285EFB9500FBE67C /* CategoryTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTitleView.swift; sourceTree = "<group>"; };
+		1E20D750285EFDD800FBE67C /* TwoAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoAnswerView.swift; sourceTree = "<group>"; };
+		1E20D752285EFDF300FBE67C /* ThreeAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeAnswerView.swift; sourceTree = "<group>"; };
 		1E6B0FC2285DF620006DBF92 /* RealtyChecklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealtyChecklist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6B0FC5285DF620006DBF92 /* RealtyChecklistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtyChecklistApp.swift; sourceTree = "<group>"; };
 		1E6B0FC7285DF620006DBF92 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -76,6 +82,9 @@
 			isa = PBXGroup;
 			children = (
 				1E6B0FD6285E069B006DBF92 /* CheckListView.swift */,
+				1E20D74E285EFB9500FBE67C /* CategoryTitleView.swift */,
+				1E20D750285EFDD800FBE67C /* TwoAnswerView.swift */,
+				1E20D752285EFDF300FBE67C /* ThreeAnswerView.swift */,
 			);
 			path = CheckList;
 			sourceTree = "<group>";
@@ -165,6 +174,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E6B0FC8285DF620006DBF92 /* ContentView.swift in Sources */,
+				1E20D753285EFDF300FBE67C /* ThreeAnswerView.swift in Sources */,
+				1E20D751285EFDD800FBE67C /* TwoAnswerView.swift in Sources */,
+				1E20D74F285EFB9500FBE67C /* CategoryTitleView.swift in Sources */,
 				1E6B0FC6285DF620006DBF92 /* RealtyChecklistApp.swift in Sources */,
 				1E6B0FD7285E069B006DBF92 /* CheckListView.swift in Sources */,
 			);

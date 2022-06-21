@@ -346,3 +346,4 @@ var bottomPadding: CGFloat {
     guard let bottomPadding = window?.safeAreaInsets.bottom else { return isHomeIndicator ? 34 : 0 }
     return bottomPadding
 }
+

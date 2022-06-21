@@ -6,18 +6,15 @@
 //
 
 import SwiftUI
-// checkmark.square
-// checkmark.square.fill
-
-let screenWidth: CGFloat = UIScreen.main.bounds.width
-let screenHeight: CGFloat = UIScreen.main.bounds.height
 
 struct CheckListView: View {
     @State private var apartName: String = ""
     @Binding var takePic: Bool
     @State private var contentHeight: CGFloat = 0
-    @State private var screenShot: UIImage? = nil
     @State private var showCaptureButton: Bool = true
+    
+    @State var items: [Any] = []
+    @State private var isSharePresented: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -203,8 +200,9 @@ struct CheckListView: View {
                     
                     if showCaptureButton {
                         Button(action: {
-                            print("캡처한당")
-                            takePic.toggle()
+                            UIApplication.shared.endEditing()
+                            showCaptureButton = false
+                            takePic = true
                         }, label: {
                             HStack(alignment: .center) {
                                 Text("체크리스트 캡처")
@@ -220,31 +218,36 @@ struct CheckListView: View {
                         })
                     }
                     
-                    Color.black
-                        .frame(width: screenWidth, height: 1)
-                    
-                    if let screenShot = screenShot {
-                        Image(uiImage: screenShot)
-                            .scaledToFit()
-                    }
-                    
                     Spacer().frame(height: 15)
                 }
             }
+            .onTapGesture {
+                UIApplication.shared.endEditing()
+            }
         }
+        .sheet(
+            isPresented: $isSharePresented,
+            onDismiss: {
+                items.removeAll()
+            },
+            content: {
+                ShareSheet(items: items)
+            })
         .background(
             ZStack {
                 GeometryReader { proxy in
                     Color.clear.onAppear() {
                         contentHeight = proxy.size.height
                     }.onChange(of: takePic) { (newVal) in
-                        showCaptureButton = false
-                        if newVal {
-                            let image = self.takeScreenshot(origin: proxy.frame(in: .global).origin, size: proxy.size)
-                            print(image) //
-                            screenShot = image
-                            takePic.toggle()
+                        if newVal == true {
+                            let originY = proxy.frame(in: .global).origin.y
+                            let adjustedY = originY - topPadding - bottomPadding - 500
+                            let startPoint: CGPoint = CGPoint.init(x: 0.0, y: adjustedY)
+                            let image = self.takeScreenshot(origin: startPoint, size: proxy.size)
+                            takePic = false
                             showCaptureButton = true
+                            items.append(image)
+                            isSharePresented = true
                         }
                     }
                 }
@@ -253,16 +256,19 @@ struct CheckListView: View {
     }
 }
 
-struct TitleView: View {
-    var body: some View {
-        Spacer().frame(height: screenHeight * 0.03)
-        ZStack {
-            HStack(alignment: .center) {
-                Text("아파트 체크리스트")
-                    .font(.system(size: 25, weight: .bold, design: .rounded))
-                    .foregroundColor(Color.mint)
-            }
-        }
+extension View {
+    func takeScreenshot(origin: CGPoint, size: CGSize) -> UIImage {
+        let origin: CGPoint = .init(x: 0, y: origin.y - 1000.0)
+        let window = UIWindow(frame: CGRect(origin: origin, size: size))
+        let hosting = UIHostingController(rootView: self)
+        let minX = window.frame.minX
+        let minY = window.frame.minY
+        let width = window.frame.width
+        let height = window.frame.height + topPadding + bottomPadding
+        hosting.view.frame = CGRect(x: minX, y: minY, width: width, height: height)
+        window.addSubview(hosting.view)
+        window.makeKeyAndVisible()
+        return hosting.view.screenShot
     }
 }
 
@@ -278,13 +284,65 @@ extension UIView {
     }
 }
 
-extension View {
-    func takeScreenshot(origin: CGPoint, size: CGSize) -> UIImage {
-        let window = UIWindow(frame: CGRect(origin: origin, size: size))
-        let hosting = UIHostingController(rootView: self)
-        hosting.view.frame = window.frame
-        window.addSubview(hosting.view)
-        window.makeKeyAndVisible()
-        return hosting.view.screenShot
+struct ActivityViewController: UIViewControllerRepresentable {
+    
+    var activityItems: [Any]
+    var applicationActivities: [UIActivity]? = nil
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+        return controller
     }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {}
+    
+}
+
+// MARK: Kavo
+struct ShareSheet: UIViewControllerRepresentable {
+    
+    var items: [Any]
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
+        
+    }
+}
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
+let screenWidth: CGFloat = UIScreen.main.bounds.width
+let screenHeight: CGFloat = UIScreen.main.bounds.height
+
+var isHomeIndicator: Bool {
+    if #available(iOS 13.0, *) {
+        let window = UIApplication.shared.windows.first { $0.isKeyWindow }
+        guard let homeIndicatorHeight = window?.safeAreaInsets.bottom else {
+            return false
+        }
+        if homeIndicatorHeight > 0 {
+            return true
+        }
+    }
+    return false
+}
+
+var topPadding: CGFloat {
+    let window = UIApplication.shared.windows.first { $0.isKeyWindow }
+    guard let topPadding = window?.safeAreaInsets.top else { return isHomeIndicator ? 47 : 20 }
+    return topPadding
+}
+
+var bottomPadding: CGFloat {
+    let window = UIApplication.shared.windows.first { $0.isKeyWindow }
+    guard let bottomPadding = window?.safeAreaInsets.bottom else { return isHomeIndicator ? 34 : 0 }
+    return bottomPadding
 }

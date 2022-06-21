@@ -10,6 +10,8 @@
 		1E20D74F285EFB9500FBE67C /* CategoryTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E20D74E285EFB9500FBE67C /* CategoryTitleView.swift */; };
 		1E20D751285EFDD800FBE67C /* TwoAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E20D750285EFDD800FBE67C /* TwoAnswerView.swift */; };
 		1E20D753285EFDF300FBE67C /* ThreeAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E20D752285EFDF300FBE67C /* ThreeAnswerView.swift */; };
+		1E55D44F2861952500483B60 /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E55D44E2861952500483B60 /* Color+.swift */; };
+		1E55D455286199AE00483B60 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E55D454286199AE00483B60 /* TitleView.swift */; };
 		1E6B0FC6285DF620006DBF92 /* RealtyChecklistApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6B0FC5285DF620006DBF92 /* RealtyChecklistApp.swift */; };
 		1E6B0FC8285DF620006DBF92 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6B0FC7285DF620006DBF92 /* ContentView.swift */; };
 		1E6B0FCA285DF621006DBF92 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E6B0FC9285DF621006DBF92 /* Assets.xcassets */; };
@@ -21,6 +23,8 @@
 		1E20D74E285EFB9500FBE67C /* CategoryTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTitleView.swift; sourceTree = "<group>"; };
 		1E20D750285EFDD800FBE67C /* TwoAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoAnswerView.swift; sourceTree = "<group>"; };
 		1E20D752285EFDF300FBE67C /* ThreeAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeAnswerView.swift; sourceTree = "<group>"; };
+		1E55D44E2861952500483B60 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		1E55D454286199AE00483B60 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		1E6B0FC2285DF620006DBF92 /* RealtyChecklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RealtyChecklist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E6B0FC5285DF620006DBF92 /* RealtyChecklistApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtyChecklistApp.swift; sourceTree = "<group>"; };
 		1E6B0FC7285DF620006DBF92 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,6 +44,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E55D44D2861951200483B60 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1E55D44E2861952500483B60 /* Color+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		1E6B0FB9285DF61F006DBF92 = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +71,7 @@
 		1E6B0FC4285DF620006DBF92 /* RealtyChecklist */ = {
 			isa = PBXGroup;
 			children = (
+				1E55D44D2861951200483B60 /* Extension */,
 				1E6B0FD3285E063A006DBF92 /* CheckList */,
 				1E6B0FD4285E064B006DBF92 /* CheckListStorage */,
 				1E6B0FD5285E067E006DBF92 /* Settings */,
@@ -85,6 +98,7 @@
 				1E20D74E285EFB9500FBE67C /* CategoryTitleView.swift */,
 				1E20D750285EFDD800FBE67C /* TwoAnswerView.swift */,
 				1E20D752285EFDF300FBE67C /* ThreeAnswerView.swift */,
+				1E55D454286199AE00483B60 /* TitleView.swift */,
 			);
 			path = CheckList;
 			sourceTree = "<group>";
@@ -173,12 +187,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E55D44F2861952500483B60 /* Color+.swift in Sources */,
 				1E6B0FC8285DF620006DBF92 /* ContentView.swift in Sources */,
 				1E20D753285EFDF300FBE67C /* ThreeAnswerView.swift in Sources */,
 				1E20D751285EFDD800FBE67C /* TwoAnswerView.swift in Sources */,
 				1E20D74F285EFB9500FBE67C /* CategoryTitleView.swift in Sources */,
 				1E6B0FC6285DF620006DBF92 /* RealtyChecklistApp.swift in Sources */,
 				1E6B0FD7285E069B006DBF92 /* CheckListView.swift in Sources */,
+				1E55D455286199AE00483B60 /* TitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +252,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -291,7 +307,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -312,6 +328,7 @@
 				DEVELOPMENT_TEAM = 4FTFKXF8N5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "캡처 이미지를 저장하려면 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -341,6 +358,7 @@
 				DEVELOPMENT_TEAM = 4FTFKXF8N5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "캡처 이미지를 저장하려면 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

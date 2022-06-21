@@ -15,13 +15,13 @@ struct CategoryTitleView: View {
             Spacer().frame(width: 16)
             
             Text(title)
-                .foregroundColor(Color.init(uiColor: UIColor.label))
+                .foregroundColor(Color.black)
                 .font(.system(size: 18, weight: .bold))
                 .minimumScaleFactor(0.7)
                 .frame(height: 35)
             
             Spacer()
         }
-        .background(Color.init(uiColor: UIColor.systemGray6))
+        .background(Color.categoryGray)
     }
 }

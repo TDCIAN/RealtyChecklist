@@ -22,7 +22,7 @@ struct ThreeAnswerView: View {
                 Spacer().frame(width: 16)
                 
                 Text(title)
-                    .foregroundColor(.init(uiColor: UIColor.secondaryLabel))
+                    .foregroundColor(.black)
                     .font(.system(size: 17, weight: .semibold))
                     .minimumScaleFactor(0.7)
                 
@@ -34,15 +34,15 @@ struct ThreeAnswerView: View {
                     }, label: {
                         Image(systemName: (checkedNumber == 0) ? "checkmark.square.fill" : "checkmark.square")
                             .renderingMode(.template)
-                            .foregroundColor((checkedNumber == 0) ? Color.mint : Color.gray)
+                            .foregroundColor((checkedNumber == 0) ? Color.themeColor : Color.gray)
                             .font(.system(size: 20))
                         
                         Spacer().frame(width: 3)
                         
                         Text(firstAnswer)
-                            .foregroundColor(.init(uiColor: UIColor.secondaryLabel))
+                            .foregroundColor(.black)
                             .font(.system(size: 16, weight: .regular))
-                            .foregroundColor((checkedNumber == 0) ? Color.mint : Color.gray)
+                            .foregroundColor((checkedNumber == 0) ? Color.themeColor : Color.gray)
                             .minimumScaleFactor(0.7)
                     })
                     
@@ -51,32 +51,33 @@ struct ThreeAnswerView: View {
                     }, label: {
                         Image(systemName: (checkedNumber == 1) ? "checkmark.square.fill" : "checkmark.square")
                             .renderingMode(.template)
-                            .foregroundColor((checkedNumber == 1) ? Color.mint : Color.gray)
+                            .foregroundColor((checkedNumber == 1) ? Color.themeColor : Color.gray)
                             .font(.system(size: 20))
                         
                         Spacer().frame(width: 3)
                         
                         Text(secondAnswer)
-                            .foregroundColor(.init(uiColor: UIColor.secondaryLabel))
+                            .foregroundColor(.black)
                             .font(.system(size: 16, weight: .regular))
-                            .foregroundColor((checkedNumber == 1) ? Color.mint : Color.gray)
+                            .foregroundColor((checkedNumber == 1) ? Color.themeColor : Color.gray)
                             .minimumScaleFactor(0.7)
                     })
                     
                     Button(action: {
                         checkedNumber = 2
+                        
                     }, label: {
                         Image(systemName: (checkedNumber == 2) ? "checkmark.square.fill" : "checkmark.square")
                             .renderingMode(.template)
-                            .foregroundColor((checkedNumber == 2) ? Color.mint : Color.gray)
+                            .foregroundColor((checkedNumber == 2) ? Color.themeColor : Color.gray)
                             .font(.system(size: 20))
                         
                         Spacer().frame(width: 3)
                         
                         Text(thirdAnswer)
-                            .foregroundColor(.init(uiColor: UIColor.secondaryLabel))
+                            .foregroundColor(.black)
                             .font(.system(size: 16, weight: .regular))
-                            .foregroundColor((checkedNumber == 2) ? Color.mint : Color.gray)
+                            .foregroundColor((checkedNumber == 2) ? Color.themeColor : Color.gray)
                             .minimumScaleFactor(0.7)
                     })
                 }

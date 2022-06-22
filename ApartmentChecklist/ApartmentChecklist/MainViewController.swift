@@ -216,14 +216,11 @@ class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapCaptureButton), for: .touchUpInside)
         return button
     }()
+
+    private var captureImage = UIImage()
+    private let viewForScrollViewContents = UIView()
     
-    private let temporaryImageView = UIImageView()
-    
-    private var shiftWorkImage = UIImage()
-    
-    private let viewForSharingCoworkShift = UIView()
-    
-    private let hiddenView: UIView = {
+    private let overlayDarkView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.9)
         view.isHidden = true
@@ -295,7 +292,7 @@ class MainViewController: UIViewController {
             captureButton,
         ].forEach { baseSettingView.addSubview($0) }
         
-        [viewForSharingCoworkShift, hiddenView, activityIndicator, loadingLabel]
+        [viewForScrollViewContents, overlayDarkView, activityIndicator, loadingLabel]
             .forEach { view.addSubview($0) }
         
         titleLabel.snp.makeConstraints {
@@ -471,7 +468,7 @@ class MainViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(16)
         }
         
-        hiddenView.snp.makeConstraints {
+        overlayDarkView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
@@ -484,7 +481,7 @@ class MainViewController: UIViewController {
             $0.centerX.equalToSuperview()
         }
         
-        viewForSharingCoworkShift.snp.makeConstraints {
+        viewForScrollViewContents.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(-40)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(0)
@@ -502,61 +499,59 @@ class MainViewController: UIViewController {
     
     func captureAndShareCoworkShift(_ completionHandler:@escaping (_ capturedImage: UIImage?) -> Void) {
 
-        hiddenView.isHidden = false
+        overlayDarkView.isHidden = false
         activityIndicator.isHidden = false
         loadingLabel.isHidden = false
-        captureButton.isHidden = true
+        captureButton.setTitle(Date().dateString, for: .normal)
 
         // MARK: (1) 사진 찍고 그 이미지 넣음
         baseScrollView.takeScreenCapture({ captureImage -> Void in
-            self.temporaryImageView.removeFromSuperview()
-            self.shiftWorkImage = captureImage!
-            
+            self.captureImage = captureImage!
             self.activityIndicator.isHidden = true
             
             // 캡처 전 화면 설정
             // MARK: (2) 캡처된 이미지를 상단부 아래 붙인다
-            lazy var shiftImageView: UIImageView = {
+            lazy var capturedImageView: UIImageView = {
                 let imageView = UIImageView()
-                imageView.image = self.shiftWorkImage
+                imageView.image = self.captureImage
                 return imageView
             }()
-            self.viewForSharingCoworkShift.addSubview(shiftImageView)
-            self.viewForSharingCoworkShift.snp.updateConstraints {
+            self.viewForScrollViewContents.addSubview(capturedImageView)
+            self.viewForScrollViewContents.snp.updateConstraints {
                 $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-                $0.height.equalTo(100 + self.shiftWorkImage.size.height)
+                $0.height.equalTo(100 + self.captureImage.size.height)
             }
-            shiftImageView.snp.makeConstraints {
-                $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(10)
+            capturedImageView.snp.makeConstraints {
+                $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(50)
                 $0.leading.trailing.equalToSuperview()
-                $0.height.equalTo(self.shiftWorkImage.size.height)
+                $0.height.equalTo(self.captureImage.size.height)
             }
             // MARK: (3) 사진 높이 + 상단부 높이를 더한 만큼 이미지 생성
             UIGraphicsBeginImageContextWithOptions(
                 CGSize(
-                    width: self.viewForSharingCoworkShift.frame.width,
-                    height:  self.shiftWorkImage.size.height
+                    width: self.viewForScrollViewContents.frame.width,
+                    height: self.captureImage.size.height + 100
                 ), false, 0
             )
             
-            self.viewForSharingCoworkShift.layer.render(in: UIGraphicsGetCurrentContext()!)
-            let wholeCoworkShiftImage = UIGraphicsGetImageFromCurrentImageContext()!
-            wholeCoworkShiftImage.pngData()
+            self.viewForScrollViewContents.layer.render(in: UIGraphicsGetCurrentContext()!)
+            let wholeScreenShotImage = UIGraphicsGetImageFromCurrentImageContext()!
+            wholeScreenShotImage.pngData()
             UIGraphicsEndImageContext()
             
             // MARK: (4) 캡처 이후 원상복귀
-            self.hiddenView.isHidden = true
+            self.overlayDarkView.isHidden = true
             self.activityIndicator.isHidden = true
             self.loadingLabel.isHidden = true
-            self.captureButton.isHidden = false
+            self.captureButton.setTitle("체크리스트 캡처", for: .normal)
 
-            self.viewForSharingCoworkShift.snp.updateConstraints {
+            self.viewForScrollViewContents.snp.updateConstraints {
                 $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-                $0.height.equalTo(59)
+                $0.height.equalTo(0)
             }
-            shiftImageView.removeFromSuperview()
+            capturedImageView.removeFromSuperview()
             
-            completionHandler(wholeCoworkShiftImage)
+            completionHandler(wholeScreenShotImage)
         })
     }
 }

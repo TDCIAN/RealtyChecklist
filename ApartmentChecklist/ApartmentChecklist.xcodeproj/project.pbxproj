@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E33E8142863465D00D7AB8E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E33E8132863465D00D7AB8E /* Date+.swift */; };
 		1EDFD2932861C154007DB978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDFD2922861C154007DB978 /* AppDelegate.swift */; };
 		1EDFD2952861C154007DB978 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDFD2942861C154007DB978 /* SceneDelegate.swift */; };
 		1EDFD2972861C154007DB978 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDFD2962861C154007DB978 /* MainViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E33E8132863465D00D7AB8E /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		1EDFD28F2861C154007DB978 /* ApartmentChecklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApartmentChecklist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDFD2922861C154007DB978 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EDFD2942861C154007DB978 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				1EDFD2AF2862047D007DB978 /* UIColor+.swift */,
 				1EDFD2B12862048D007DB978 /* UITextField+.swift */,
 				1EDFD2B3286204CF007DB978 /* UIScrollView+.swift */,
+				1E33E8132863465D00D7AB8E /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E33E8142863465D00D7AB8E /* Date+.swift in Sources */,
 				1EDFD2972861C154007DB978 /* MainViewController.swift in Sources */,
 				1EDFD2B4286204CF007DB978 /* UIScrollView+.swift in Sources */,
 				1EDFD2AD2861D66E007DB978 /* AnswerView.swift in Sources */,
@@ -318,7 +322,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2022062201;
 				DEVELOPMENT_TEAM = 4FTFKXF8N5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ApartmentChecklist/Info.plist;
@@ -333,7 +337,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeongminkim.ApartmentChecklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -351,7 +355,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2022062201;
 				DEVELOPMENT_TEAM = 4FTFKXF8N5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ApartmentChecklist/Info.plist;
@@ -366,7 +370,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeongminkim.ApartmentChecklist;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

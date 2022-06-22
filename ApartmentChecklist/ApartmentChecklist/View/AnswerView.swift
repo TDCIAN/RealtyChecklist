@@ -15,7 +15,7 @@ final class AnswerView: UIView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .darkText
+        label.textColor = .label
         label.font = .systemFont(ofSize: 17, weight: .medium)
         return label
     }()
@@ -33,7 +33,7 @@ final class AnswerView: UIView {
         )
         seg.setTitleTextAttributes(
             [
-                .foregroundColor: UIColor.darkText,
+                .foregroundColor: UIColor.label,
                 .font: UIFont.systemFont(ofSize: 15, weight: .medium)
             ],
             for: .normal
@@ -43,7 +43,7 @@ final class AnswerView: UIView {
     
     lazy var horizontalLine: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.darkGray
+        view.backgroundColor = UIColor.systemGray
         view.isHidden = needToHideLine
         return view
     }()

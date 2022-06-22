@@ -30,8 +30,8 @@ class MainViewController: UIViewController {
     
     private lazy var apartImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "building.2")?.withTintColor(.black, renderingMode: .alwaysTemplate)
-        imageView.tintColor = .black
+        imageView.image = UIImage(systemName: "building.2")?.withTintColor(.label, renderingMode: .alwaysTemplate)
+        imageView.tintColor = .label
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -55,19 +55,19 @@ class MainViewController: UIViewController {
         return category
     }()
     
-    private lazy var answer1View: AnswerView = {
+    private lazy var education1View: AnswerView = {
         let answerView = AnswerView(list: ["초품아", "길 건너", "멀리"])
         answerView.titleLabel.text = "단지 내 어린이집"
         return answerView
     }()
     
-    private lazy var answer2View: AnswerView = {
+    private lazy var education2View: AnswerView = {
         let answerView = AnswerView(list: ["탄성", "모래"])
         answerView.titleLabel.text = "놀이터 바닥"
         return answerView
     }()
     
-    private lazy var answer3View: AnswerView = {
+    private lazy var education3View: AnswerView = {
         let answerView = AnswerView(list: ["있음", "없음"], needToHideLine: true)
         answerView.titleLabel.text = "놀이터 CCTV"
         return answerView
@@ -80,19 +80,19 @@ class MainViewController: UIViewController {
         return category
     }()
     
-    private lazy var answer4View: AnswerView = {
+    private lazy var around1View: AnswerView = {
         let answerView = AnswerView(list: ["가까움", "없음"])
         answerView.titleLabel.text = "공원"
         return answerView
     }()
     
-    private lazy var answer5View: AnswerView = {
+    private lazy var around2View: AnswerView = {
         let answerView = AnswerView(list: ["2개 이상", "1개", "없음"])
         answerView.titleLabel.text = "백화점"
         return answerView
     }()
     
-    private lazy var answer6View: AnswerView = {
+    private lazy var around3View: AnswerView = {
         let answerView = AnswerView(list: ["1개 이상", "없음"], needToHideLine: true)
         answerView.titleLabel.text = "대형마트"
         return answerView
@@ -105,25 +105,25 @@ class MainViewController: UIViewController {
         return category
     }()
     
-    private lazy var answer7View: AnswerView = {
+    private lazy var parking1View: AnswerView = {
         let answerView = AnswerView(list: ["통행 불가", "통행 가능"])
         answerView.titleLabel.text = "지상 차량 통행"
         return answerView
     }()
     
-    private lazy var answer8View: AnswerView = {
+    private lazy var parking2View: AnswerView = {
         let answerView = AnswerView(list: ["있음", "없음"])
         answerView.titleLabel.text = "지하주차장 유무"
         return answerView
     }()
     
-    private lazy var answer9View: AnswerView = {
+    private lazy var parking3View: AnswerView = {
         let answerView = AnswerView(list: ["됨", "안 됨"])
         answerView.titleLabel.text = "지하주차장 연결"
         return answerView
     }()
     
-    private lazy var answer10View: AnswerView = {
+    private lazy var parking4View: AnswerView = {
         let answerView = AnswerView(list: ["여유", "보통", "혼잡"], needToHideLine: true)
         answerView.titleLabel.text = "주차 혼잡도"
         return answerView
@@ -136,7 +136,7 @@ class MainViewController: UIViewController {
         return category
     }()
     
-    private lazy var answer11View: AnswerView = {
+    private lazy var incomeLevel1View: AnswerView = {
         let answerView = AnswerView(list: ["많음", "보통", "적음"], needToHideLine: true)
         answerView.titleLabel.text = "외제차"
         return answerView
@@ -149,19 +149,19 @@ class MainViewController: UIViewController {
         return category
     }()
     
-    private lazy var answer12View: AnswerView = {
+    private lazy var environment1View: AnswerView = {
         let answerView = AnswerView(list: ["깔끔", "보통", "더러움"])
         answerView.titleLabel.text = "건물 외벽 칠"
         return answerView
     }()
     
-    private lazy var answer13View: AnswerView = {
+    private lazy var environment2View: AnswerView = {
         let answerView = AnswerView(list: ["깨끗", "보통", "더러움"])
         answerView.titleLabel.text = "청소 상태"
         return answerView
     }()
     
-    private lazy var answer14View: AnswerView = {
+    private lazy var environment3View: AnswerView = {
         let answerView = AnswerView(list: ["조용", "보통", "시끄러움"], needToHideLine: true)
         answerView.titleLabel.text = "소음"
         return answerView
@@ -174,15 +174,21 @@ class MainViewController: UIViewController {
         return category
     }()
     
-    private lazy var answer15View: AnswerView = {
+    private lazy var security1View: AnswerView = {
         let answerView = AnswerView(list: ["있음", "없음"])
         answerView.titleLabel.text = "출입구 비밀번호 키"
         return answerView
     }()
     
-    private lazy var answer16View: AnswerView = {
-        let answerView = AnswerView(list: ["밝음", "보통", "어두움"], needToHideLine: true)
+    private lazy var security2View: AnswerView = {
+        let answerView = AnswerView(list: ["밝음", "보통", "어두움"])
         answerView.titleLabel.text = "야간 조도"
+        return answerView
+    }()
+    
+    private lazy var security3View: AnswerView = {
+        let answerView = AnswerView(list: ["경비 철저", "자유로움"], needToHideLine: true)
+        answerView.titleLabel.text = "외부인 출입 자유도"
         return answerView
     }()
     
@@ -193,17 +199,40 @@ class MainViewController: UIViewController {
         return category
     }()
     
-    private lazy var answer17View: AnswerView = {
+    private lazy var hardware1View: AnswerView = {
         let answerView = AnswerView(list: ["평지", "약간 경사", "급경사"])
         answerView.titleLabel.text = "경사 정도"
         return answerView
     }()
     
-    private lazy var answer18View: AnswerView = {
+    private lazy var hardware2View: AnswerView = {
         let answerView = AnswerView(list: ["멂", "보통", "가까움"], needToHideLine: true)
         answerView.titleLabel.text = "동간 거리"
         return answerView
     }()
+    
+    // MARK: 메모
+    private lazy var memoHeaderView: CategoryHeaderView = {
+        let category = CategoryHeaderView()
+        category.titleLabel.text = "메모"
+        return category
+    }()
+    
+    private lazy var memoTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = .systemFont(ofSize: 16, weight: .medium)
+        textView.delegate = self
+        textView.isScrollEnabled = false
+        textView.layer.borderColor = UIColor.systemGray.cgColor
+        textView.layer.borderWidth = 1
+        textView.layer.cornerRadius = 6
+        textView.autocorrectionType = .no
+        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        textView.addDoneButtonOnKeyboard()
+        return textView
+    }()
+    
+    private var isMemoTextViewEditing: Bool = false
     
     private lazy var captureButton: UIButton = {
         let button = UIButton()
@@ -248,11 +277,30 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setLayout()
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc private func hideKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+
+        if isMemoTextViewEditing && self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= keyboardSize.height
+        }
+    }
+    
+    @objc private func keyboardWillHide() {
+        if isMemoTextViewEditing {
+            self.view.frame.origin.y = 0
+        }
     }
     
     private func setLayout() {
@@ -265,7 +313,7 @@ class MainViewController: UIViewController {
         }
         baseSettingView.snp.makeConstraints {
             $0.width.equalTo(baseScrollView.frameLayoutGuide.snp.width)
-            $0.height.equalTo(1600)
+            $0.height.equalTo(1750)
             $0.top.equalTo(baseScrollView.contentLayoutGuide.snp.top)
             $0.bottom.equalTo(baseScrollView.contentLayoutGuide.snp.bottom)
             $0.leading.equalTo(baseScrollView.contentLayoutGuide.snp.leading)
@@ -276,20 +324,22 @@ class MainViewController: UIViewController {
             titleLabel,
             apartImageView, apartnameTextField,
             educationHeaderView,
-            answer1View, answer2View, answer3View,
+            education1View, education2View, education3View,
             aroundHeaderView,
-            answer4View, answer5View, answer6View,
+            around1View, around2View, around3View,
             parkingHeaderView,
-            answer7View, answer8View, answer9View, answer10View,
+            parking1View, parking2View, parking3View, parking4View,
             incomeLevelHeaderView,
-            answer11View,
+            incomeLevel1View,
             environmentHeaderView,
-            answer12View, answer13View, answer14View,
+            environment1View, environment2View, environment3View,
             securityHeaderView,
-            answer15View, answer16View,
+            security1View, security2View, security3View,
             hardwareHeaderView,
-            answer17View, answer18View,
+            hardware1View, hardware2View,
             captureButton,
+            memoHeaderView,
+            memoTextView
         ].forEach { baseSettingView.addSubview($0) }
         
         [viewForScrollViewContents, overlayDarkView, activityIndicator, loadingLabel]
@@ -318,152 +368,171 @@ class MainViewController: UIViewController {
             $0.height.equalTo(45)
         }
         
-        answer1View.snp.makeConstraints {
+        education1View.snp.makeConstraints {
             $0.top.equalTo(educationHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
-        answer2View.snp.makeConstraints {
-            $0.top.equalTo(answer1View.snp.bottom)
+        education2View.snp.makeConstraints {
+            $0.top.equalTo(education1View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
-        answer3View.snp.makeConstraints {
-            $0.top.equalTo(answer2View.snp.bottom)
+        education3View.snp.makeConstraints {
+            $0.top.equalTo(education2View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
         aroundHeaderView.snp.makeConstraints {
-            $0.top.equalTo(answer3View.snp.bottom)
+            $0.top.equalTo(education3View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
         
-        answer4View.snp.makeConstraints {
+        around1View.snp.makeConstraints {
             $0.top.equalTo(aroundHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
-        answer5View.snp.makeConstraints {
-            $0.top.equalTo(answer4View.snp.bottom)
+        around2View.snp.makeConstraints {
+            $0.top.equalTo(around1View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
-        answer6View.snp.makeConstraints {
-            $0.top.equalTo(answer5View.snp.bottom)
+        around3View.snp.makeConstraints {
+            $0.top.equalTo(around2View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
         parkingHeaderView.snp.makeConstraints {
-            $0.top.equalTo(answer6View.snp.bottom)
+            $0.top.equalTo(around3View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
         
-        answer7View.snp.makeConstraints {
+        parking1View.snp.makeConstraints {
             $0.top.equalTo(parkingHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
-        answer8View.snp.makeConstraints {
-            $0.top.equalTo(answer7View.snp.bottom)
+        parking2View.snp.makeConstraints {
+            $0.top.equalTo(parking1View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
-        answer9View.snp.makeConstraints {
-            $0.top.equalTo(answer8View.snp.bottom)
+        parking3View.snp.makeConstraints {
+            $0.top.equalTo(parking2View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
-        answer10View.snp.makeConstraints {
-            $0.top.equalTo(answer9View.snp.bottom)
+        parking4View.snp.makeConstraints {
+            $0.top.equalTo(parking3View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
         incomeLevelHeaderView.snp.makeConstraints {
-            $0.top.equalTo(answer10View.snp.bottom)
+            $0.top.equalTo(parking4View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
         
-        answer11View.snp.makeConstraints {
+        incomeLevel1View.snp.makeConstraints {
             $0.top.equalTo(incomeLevelHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
         environmentHeaderView.snp.makeConstraints {
-            $0.top.equalTo(answer11View.snp.bottom)
+            $0.top.equalTo(incomeLevel1View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
         
-        answer12View.snp.makeConstraints {
+        environment1View.snp.makeConstraints {
             $0.top.equalTo(environmentHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
-        answer13View.snp.makeConstraints {
-            $0.top.equalTo(answer12View.snp.bottom)
+        environment2View.snp.makeConstraints {
+            $0.top.equalTo(environment1View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
-        answer14View.snp.makeConstraints {
-            $0.top.equalTo(answer13View.snp.bottom)
+        environment3View.snp.makeConstraints {
+            $0.top.equalTo(environment2View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
         securityHeaderView.snp.makeConstraints {
-            $0.top.equalTo(answer14View.snp.bottom)
+            $0.top.equalTo(environment3View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
         
-        answer15View.snp.makeConstraints {
+        security1View.snp.makeConstraints {
             $0.top.equalTo(securityHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
-        answer16View.snp.makeConstraints {
-            $0.top.equalTo(answer15View.snp.bottom)
+        security2View.snp.makeConstraints {
+            $0.top.equalTo(security1View.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
+        security3View.snp.makeConstraints {
+            $0.top.equalTo(security2View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
         hardwareHeaderView.snp.makeConstraints {
-            $0.top.equalTo(answer16View.snp.bottom)
+            $0.top.equalTo(security3View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
         
-        answer17View.snp.makeConstraints {
+        hardware1View.snp.makeConstraints {
             $0.top.equalTo(hardwareHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
-        answer18View.snp.makeConstraints {
-            $0.top.equalTo(answer17View.snp.bottom)
+        hardware2View.snp.makeConstraints {
+            $0.top.equalTo(hardware1View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
+        memoHeaderView.snp.makeConstraints {
+            $0.top.equalTo(hardware2View.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(45)
+        }
+        
+        memoTextView.snp.makeConstraints {
+            $0.top.equalTo(memoHeaderView.snp.bottom).offset(15)
+            $0.leading.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(40)
+        }
+        
         captureButton.snp.makeConstraints {
-            $0.top.equalTo(answer18View.snp.bottom).offset(15)
+//            $0.top.equalTo(answer18View.snp.bottom).offset(15)
+            $0.top.equalTo(memoTextView.snp.bottom).offset(20)
             $0.height.equalTo(55)
             $0.leading.trailing.equalToSuperview().inset(16)
         }
@@ -559,5 +628,37 @@ class MainViewController: UIViewController {
 extension MainViewController: UIScrollViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.view.endEditing(true)
+    }
+}
+
+extension MainViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: view.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        
+        let baseSettingViewSize: CGFloat = 1710 + estimatedSize.height
+        baseSettingView.snp.updateConstraints {
+            $0.height.equalTo(baseSettingViewSize)
+        }
+        
+        textView.constraints.forEach { (constraint) in
+            constraint.constant = estimatedSize.height
+//            if estimatedSize.height <= 40 {
+//
+//            } else {
+//                if constraint.firstAttribute == .height {
+//                    constraint.constant = estimatedSize.height
+//                }
+//            }
+        }
+    }
+    
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        self.isMemoTextViewEditing = true
+        return true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        self.isMemoTextViewEditing = false
     }
 }

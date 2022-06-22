@@ -1,18 +1,13 @@
 //
-//  UITextField.swift
+//  UITextView+.swift
 //  ApartmentChecklist
 //
-//  Created by JeongminKim on 2022/06/21.
+//  Created by JeongminKim on 2022/06/22.
 //
 
 import UIKit
 
-extension UITextField {
-    func addLeftPadding() {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
-        self.leftView = paddingView
-        self.leftViewMode = ViewMode.always
-    }
+extension UITextView {
     
     func addDoneButtonOnKeyboard() {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
@@ -30,3 +25,4 @@ extension UITextField {
         self.resignFirstResponder()
     }
 }
+

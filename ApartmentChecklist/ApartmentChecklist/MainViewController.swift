@@ -45,6 +45,7 @@ class MainViewController: UIViewController {
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 6
         textField.addDoneButtonOnKeyboard()
+        textField.clearButtonMode = .always
         return textField
     }()
     
@@ -56,18 +57,24 @@ class MainViewController: UIViewController {
     }()
     
     private lazy var education1View: AnswerView = {
-        let answerView = AnswerView(list: ["초품아", "길 건너", "멀리"])
+        let answerView = AnswerView(list: ["단지 내", "길 건너", "멀리"])
         answerView.titleLabel.text = "단지 내 어린이집"
         return answerView
     }()
     
     private lazy var education2View: AnswerView = {
+        let answerView = AnswerView(list: ["초품아", "근처", "멀리"])
+        answerView.titleLabel.text = "초등학교"
+        return answerView
+    }()
+    
+    private lazy var education3View: AnswerView = {
         let answerView = AnswerView(list: ["탄성", "모래"])
         answerView.titleLabel.text = "놀이터 바닥"
         return answerView
     }()
     
-    private lazy var education3View: AnswerView = {
+    private lazy var education4View: AnswerView = {
         let answerView = AnswerView(list: ["있음", "없음"], needToHideLine: true)
         answerView.titleLabel.text = "놀이터 CCTV"
         return answerView
@@ -170,7 +177,7 @@ class MainViewController: UIViewController {
     // MARK: 보안안전
     private lazy var securityHeaderView: CategoryHeaderView = {
         let category = CategoryHeaderView()
-        category.titleLabel.text = "보안안전"
+        category.titleLabel.text = "보안 / 안전"
         return category
     }()
     
@@ -187,8 +194,14 @@ class MainViewController: UIViewController {
     }()
     
     private lazy var security3View: AnswerView = {
-        let answerView = AnswerView(list: ["경비 철저", "자유로움"], needToHideLine: true)
+        let answerView = AnswerView(list: ["경비 철저", "자유로움"])
         answerView.titleLabel.text = "외부인 출입 자유도"
+        return answerView
+    }()
+    
+    private lazy var security4View: AnswerView = {
+        let answerView = AnswerView(list: ["있음", "없음"], needToHideLine: true)
+        answerView.titleLabel.text = "차량 진입 차단기"
         return answerView
     }()
     
@@ -313,7 +326,9 @@ class MainViewController: UIViewController {
         }
         baseSettingView.snp.makeConstraints {
             $0.width.equalTo(baseScrollView.frameLayoutGuide.snp.width)
-            $0.height.equalTo(1750)
+//            $0.height.equalTo(1750)
+//            $0.height.equalTo(1810)
+            $0.height.equalTo(1870)
             $0.top.equalTo(baseScrollView.contentLayoutGuide.snp.top)
             $0.bottom.equalTo(baseScrollView.contentLayoutGuide.snp.bottom)
             $0.leading.equalTo(baseScrollView.contentLayoutGuide.snp.leading)
@@ -324,7 +339,7 @@ class MainViewController: UIViewController {
             titleLabel,
             apartImageView, apartnameTextField,
             educationHeaderView,
-            education1View, education2View, education3View,
+            education1View, education2View, education3View, education4View,
             aroundHeaderView,
             around1View, around2View, around3View,
             parkingHeaderView,
@@ -334,7 +349,7 @@ class MainViewController: UIViewController {
             environmentHeaderView,
             environment1View, environment2View, environment3View,
             securityHeaderView,
-            security1View, security2View, security3View,
+            security1View, security2View, security3View, security4View,
             hardwareHeaderView,
             hardware1View, hardware2View,
             captureButton,
@@ -386,8 +401,14 @@ class MainViewController: UIViewController {
             $0.height.equalTo(60)
         }
         
-        aroundHeaderView.snp.makeConstraints {
+        education4View.snp.makeConstraints {
             $0.top.equalTo(education3View.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
+        aroundHeaderView.snp.makeConstraints {
+            $0.top.equalTo(education4View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
@@ -500,8 +521,14 @@ class MainViewController: UIViewController {
             $0.height.equalTo(60)
         }
         
-        hardwareHeaderView.snp.makeConstraints {
+        security4View.snp.makeConstraints {
             $0.top.equalTo(security3View.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
+        hardwareHeaderView.snp.makeConstraints {
+            $0.top.equalTo(security4View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
@@ -636,7 +663,9 @@ extension MainViewController: UITextViewDelegate {
         let size = CGSize(width: view.frame.width, height: .infinity)
         let estimatedSize = textView.sizeThatFits(size)
         
-        let baseSettingViewSize: CGFloat = 1710 + estimatedSize.height
+//        let baseSettingViewSize: CGFloat = 1710 + estimatedSize.height
+//        let baseSettingViewSize: CGFloat = 1770 + estimatedSize.height
+        let baseSettingViewSize: CGFloat = 1830 + estimatedSize.height
         baseSettingView.snp.updateConstraints {
             $0.height.equalTo(baseSettingViewSize)
         }

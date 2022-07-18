@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Toast
 
 class MainViewController: UIViewController {
     private lazy var baseScrollView: UIScrollView = {
@@ -57,8 +58,8 @@ class MainViewController: UIViewController {
     }()
     
     private lazy var education1View: AnswerView = {
-        let answerView = AnswerView(list: ["단지 내", "길 건너", "멀리"])
-        answerView.titleLabel.text = "단지 내 어린이집"
+        let answerView = AnswerView(list: ["단지 내", "근처", "멀리"])
+        answerView.titleLabel.text = "어린이집"
         return answerView
     }()
     
@@ -69,12 +70,18 @@ class MainViewController: UIViewController {
     }()
     
     private lazy var education3View: AnswerView = {
+        let answerView = AnswerView(list: ["95~90%", "90~85%", "85% 미만"])
+        answerView.titleLabel.text = "중학교"
+        return answerView
+    }()
+    
+    private lazy var education4View: AnswerView = {
         let answerView = AnswerView(list: ["탄성", "모래"])
         answerView.titleLabel.text = "놀이터 바닥"
         return answerView
     }()
     
-    private lazy var education4View: AnswerView = {
+    private lazy var education5View: AnswerView = {
         let answerView = AnswerView(list: ["있음", "없음"], needToHideLine: true)
         answerView.titleLabel.text = "놀이터 CCTV"
         return answerView
@@ -83,7 +90,7 @@ class MainViewController: UIViewController {
     // MARK: 주변
     private lazy var aroundHeaderView: CategoryHeaderView = {
         let category = CategoryHeaderView()
-        category.titleLabel.text = "주변"
+        category.titleLabel.text = "주변 (반경 1km 기준)"
         return category
     }()
     
@@ -100,10 +107,22 @@ class MainViewController: UIViewController {
     }()
     
     private lazy var around3View: AnswerView = {
-        let answerView = AnswerView(list: ["1개 이상", "없음"], needToHideLine: true)
+        let answerView = AnswerView(list: ["2개 이상", "1개", "없음"])
         answerView.titleLabel.text = "대형마트"
         return answerView
     }()
+    
+    private lazy var around4View: AnswerView = {
+        let answerView = AnswerView(list: ["2개 이상", "1개", "없음"], needToHideLine: true)
+        answerView.titleLabel.text = "스타벅스"
+        return answerView
+    }()
+    
+//    private lazy var around5View: AnswerView = {
+//        let answerView = AnswerView(list: ["있음", "없음"], needToHideLine: true)
+//        answerView.titleLabel.text = "ATM"
+//        return answerView
+//    }()
     
     // MARK: 주차
     private lazy var parkingHeaderView: CategoryHeaderView = {
@@ -131,23 +150,29 @@ class MainViewController: UIViewController {
     }()
     
     private lazy var parking4View: AnswerView = {
-        let answerView = AnswerView(list: ["여유", "보통", "혼잡"], needToHideLine: true)
+        let answerView = AnswerView(list: ["여유", "보통", "혼잡"])
         answerView.titleLabel.text = "주차 혼잡도"
         return answerView
     }()
     
-    // MARK: 구매력(소득수준)
-    private lazy var incomeLevelHeaderView: CategoryHeaderView = {
-        let category = CategoryHeaderView()
-        category.titleLabel.text = "구매력(소득수준)"
-        return category
-    }()
-    
-    private lazy var incomeLevel1View: AnswerView = {
+    private lazy var parking5View: AnswerView = {
         let answerView = AnswerView(list: ["많음", "보통", "적음"], needToHideLine: true)
         answerView.titleLabel.text = "외제차"
         return answerView
     }()
+    
+    // MARK: 구매력(소득수준)
+//    private lazy var incomeLevelHeaderView: CategoryHeaderView = {
+//        let category = CategoryHeaderView()
+//        category.titleLabel.text = "구매력(소득수준)"
+//        return category
+//    }()
+//
+//    private lazy var incomeLevel1View: AnswerView = {
+//        let answerView = AnswerView(list: ["많음", "보통", "적음"], needToHideLine: true)
+//        answerView.titleLabel.text = "외제차"
+//        return answerView
+//    }()
     
     // MARK: 환경관리
     private lazy var environmentHeaderView: CategoryHeaderView = {
@@ -224,6 +249,25 @@ class MainViewController: UIViewController {
         return answerView
     }()
     
+    // MARK: 편의시설
+    private lazy var facilitiesHeaderView: CategoryHeaderView = {
+        let category = CategoryHeaderView()
+        category.titleLabel.text = "편의시설"
+        return category
+    }()
+    
+    private lazy var facilities1View: AnswerView = {
+        let answerView = AnswerView(list: ["관리 우수", "보통", "공실 많음"])
+        answerView.titleLabel.text = "상가"
+        return answerView
+    }()
+    
+    private lazy var facilities2View: AnswerView = {
+        let answerView = AnswerView(list: ["있음", "없음"], needToHideLine: true)
+        answerView.titleLabel.text = "ATM"
+        return answerView
+    }()
+    
     // MARK: 메모
     private lazy var memoHeaderView: CategoryHeaderView = {
         let category = CategoryHeaderView()
@@ -252,7 +296,7 @@ class MainViewController: UIViewController {
         button.layer.cornerRadius = 6
         button.layer.borderColor = UIColor.systemGray.cgColor
         button.layer.borderWidth = 1
-        button.setTitle("체크리스트 캡처", for: .normal)
+        button.setTitle("체크리스트 캡처 후 저장", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         button.setTitleColor(UIColor.darkGray, for: .normal)
         button.addTarget(self, action: #selector(didTapCaptureButton), for: .touchUpInside)
@@ -264,7 +308,7 @@ class MainViewController: UIViewController {
     
     private let overlayDarkView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.9)
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1)
         view.isHidden = true
         return view
     }()
@@ -328,7 +372,12 @@ class MainViewController: UIViewController {
             $0.width.equalTo(baseScrollView.frameLayoutGuide.snp.width)
 //            $0.height.equalTo(1750)
 //            $0.height.equalTo(1810)
-            $0.height.equalTo(1870)
+//            $0.height.equalTo(1870)
+//            $0.height.equalTo(1930)
+//            $0.height.equalTo(1990)
+//            $0.height.equalTo(2050)
+            $0.height.equalTo(2095)
+//            $0.height.equalTo(2155)
             $0.top.equalTo(baseScrollView.contentLayoutGuide.snp.top)
             $0.bottom.equalTo(baseScrollView.contentLayoutGuide.snp.bottom)
             $0.leading.equalTo(baseScrollView.contentLayoutGuide.snp.leading)
@@ -339,19 +388,21 @@ class MainViewController: UIViewController {
             titleLabel,
             apartImageView, apartnameTextField,
             educationHeaderView,
-            education1View, education2View, education3View, education4View,
+            education1View, education2View, education3View, education4View, education5View,
             aroundHeaderView,
-            around1View, around2View, around3View,
+            around1View, around2View, around3View, around4View,
             parkingHeaderView,
-            parking1View, parking2View, parking3View, parking4View,
-            incomeLevelHeaderView,
-            incomeLevel1View,
+            parking1View, parking2View, parking3View, parking4View, parking5View,
+//            incomeLevelHeaderView,
+//            incomeLevel1View,
             environmentHeaderView,
             environment1View, environment2View, environment3View,
             securityHeaderView,
             security1View, security2View, security3View, security4View,
             hardwareHeaderView,
             hardware1View, hardware2View,
+            facilitiesHeaderView,
+            facilities1View, facilities2View,
             captureButton,
             memoHeaderView,
             memoTextView
@@ -407,8 +458,14 @@ class MainViewController: UIViewController {
             $0.height.equalTo(60)
         }
         
-        aroundHeaderView.snp.makeConstraints {
+        education5View.snp.makeConstraints {
             $0.top.equalTo(education4View.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
+        aroundHeaderView.snp.makeConstraints {
+            $0.top.equalTo(education5View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
@@ -431,8 +488,20 @@ class MainViewController: UIViewController {
             $0.height.equalTo(60)
         }
         
-        parkingHeaderView.snp.makeConstraints {
+        around4View.snp.makeConstraints {
             $0.top.equalTo(around3View.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
+//        around5View.snp.makeConstraints {
+//            $0.top.equalTo(around4View.snp.bottom)
+//            $0.leading.trailing.equalToSuperview()
+//            $0.height.equalTo(60)
+//        }
+        
+        parkingHeaderView.snp.makeConstraints {
+            $0.top.equalTo(around4View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
@@ -461,20 +530,26 @@ class MainViewController: UIViewController {
             $0.height.equalTo(60)
         }
         
-        incomeLevelHeaderView.snp.makeConstraints {
+        parking5View.snp.makeConstraints {
             $0.top.equalTo(parking4View.snp.bottom)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(45)
-        }
-        
-        incomeLevel1View.snp.makeConstraints {
-            $0.top.equalTo(incomeLevelHeaderView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
         
+//        incomeLevelHeaderView.snp.makeConstraints {
+//            $0.top.equalTo(parking4View.snp.bottom)
+//            $0.leading.trailing.equalToSuperview()
+//            $0.height.equalTo(45)
+//        }
+//
+//        incomeLevel1View.snp.makeConstraints {
+//            $0.top.equalTo(incomeLevelHeaderView.snp.bottom)
+//            $0.leading.trailing.equalToSuperview()
+//            $0.height.equalTo(60)
+//        }
+        
         environmentHeaderView.snp.makeConstraints {
-            $0.top.equalTo(incomeLevel1View.snp.bottom)
+            $0.top.equalTo(parking5View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
@@ -545,8 +620,26 @@ class MainViewController: UIViewController {
             $0.height.equalTo(60)
         }
         
-        memoHeaderView.snp.makeConstraints {
+        facilitiesHeaderView.snp.makeConstraints {
             $0.top.equalTo(hardware2View.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(45)
+        }
+        
+        facilities1View.snp.makeConstraints {
+            $0.top.equalTo(facilitiesHeaderView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
+        facilities2View.snp.makeConstraints {
+            $0.top.equalTo(facilities1View.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(60)
+        }
+        
+        memoHeaderView.snp.makeConstraints {
+            $0.top.equalTo(facilities2View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(45)
         }
@@ -586,10 +679,16 @@ class MainViewController: UIViewController {
     
     @objc private func didTapCaptureButton() {
         captureAndShareCoworkShift { capturedImage in
-            let shareCowkrShift:[Any] = [capturedImage]
-            let activityViewController = UIActivityViewController(activityItems: shareCowkrShift, applicationActivities: nil)
-            activityViewController.popoverPresentationController?.sourceView = self.view
-            self.present(activityViewController, animated: true, completion: nil)
+//            let shareCowkrShift:[Any] = [capturedImage]
+//            let activityViewController = UIActivityViewController(activityItems: shareCowkrShift, applicationActivities: nil)
+//            activityViewController.popoverPresentationController?.sourceView = self.view
+//            self.present(activityViewController, animated: true, completion: nil)
+            if let capturedImage = capturedImage {
+                UIImageWriteToSavedPhotosAlbum(capturedImage, nil, nil, nil)
+                self.view.makeToast("작성된 체크리스트를 앨범에 저장하였습니다.")
+            } else {
+                self.view.makeToast("체크리스트 저장에 실패하였습니다.")
+            }
         }
     }
     
@@ -639,7 +738,7 @@ class MainViewController: UIViewController {
             self.overlayDarkView.isHidden = true
             self.activityIndicator.isHidden = true
             self.loadingLabel.isHidden = true
-            self.captureButton.setTitle("체크리스트 캡처", for: .normal)
+            self.captureButton.setTitle("체크리스트 캡처 후 저장", for: .normal)
 
             self.viewForScrollViewContents.snp.updateConstraints {
                 $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
@@ -665,7 +764,12 @@ extension MainViewController: UITextViewDelegate {
         
 //        let baseSettingViewSize: CGFloat = 1710 + estimatedSize.height
 //        let baseSettingViewSize: CGFloat = 1770 + estimatedSize.height
-        let baseSettingViewSize: CGFloat = 1830 + estimatedSize.height
+//        let baseSettingViewSize: CGFloat = 1830 + estimatedSize.height
+//        let baseSettingViewSize: CGFloat = 1890 + estimatedSize.height
+//        let baseSettingViewSize: CGFloat = 1950 + estimatedSize.height
+//        let baseSettingViewSize: CGFloat = 2010 + estimatedSize.height
+        let baseSettingViewSize: CGFloat = 2055 + estimatedSize.height
+//        let baseSettingViewSize: CGFloat = 2115 + estimatedSize.height
         baseSettingView.snp.updateConstraints {
             $0.height.equalTo(baseSettingViewSize)
         }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1E33E8142863465D00D7AB8E /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E33E8132863465D00D7AB8E /* Date+.swift */; };
 		1E33E8162863569C00D7AB8E /* UITextView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E33E8152863569C00D7AB8E /* UITextView+.swift */; };
+		1EB89DFF2885AACD00FFC631 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 1EB89DFE2885AACD00FFC631 /* Toast */; };
 		1EDFD2932861C154007DB978 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDFD2922861C154007DB978 /* AppDelegate.swift */; };
 		1EDFD2952861C154007DB978 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDFD2942861C154007DB978 /* SceneDelegate.swift */; };
 		1EDFD2972861C154007DB978 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDFD2962861C154007DB978 /* MainViewController.swift */; };
@@ -44,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EB89DFF2885AACD00FFC631 /* Toast in Frameworks */,
 				1EDFD2A82861C394007DB978 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +123,7 @@
 			name = ApartmentChecklist;
 			packageProductDependencies = (
 				1EDFD2A72861C394007DB978 /* SnapKit */,
+				1EB89DFE2885AACD00FFC631 /* Toast */,
 			);
 			productName = ApartmentChecklist;
 			productReference = 1EDFD28F2861C154007DB978 /* ApartmentChecklist.app */;
@@ -152,6 +155,7 @@
 			mainGroup = 1EDFD2862861C154007DB978;
 			packageReferences = (
 				1EDFD2A62861C394007DB978 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				1EB89DFD2885AACD00FFC631 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = 1EDFD2902861C154007DB978 /* Products */;
 			projectDirPath = "";
@@ -326,7 +330,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2022071201;
+				CURRENT_PROJECT_VERSION = 2022071901;
 				DEVELOPMENT_TEAM = 4FTFKXF8N5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ApartmentChecklist/Info.plist;
@@ -359,7 +363,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2022071201;
+				CURRENT_PROJECT_VERSION = 2022071901;
 				DEVELOPMENT_TEAM = 4FTFKXF8N5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ApartmentChecklist/Info.plist;
@@ -410,6 +414,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1EB89DFD2885AACD00FFC631 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		1EDFD2A62861C394007DB978 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -421,6 +433,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1EB89DFE2885AACD00FFC631 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EB89DFD2885AACD00FFC631 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
 		1EDFD2A72861C394007DB978 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1EDFD2A62861C394007DB978 /* XCRemoteSwiftPackageReference "SnapKit" */;

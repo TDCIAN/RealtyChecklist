@@ -50,6 +50,15 @@ class MainViewController: UIViewController {
         return textField
     }()
     
+    private lazy var initializeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("초기화", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 18)
+        button.addTarget(self, action: #selector(didTapInitializeButton), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: 교육 / 육아
     private lazy var educationHeaderView: CategoryHeaderView = {
         let category = CategoryHeaderView()
@@ -118,12 +127,6 @@ class MainViewController: UIViewController {
         return answerView
     }()
     
-//    private lazy var around5View: AnswerView = {
-//        let answerView = AnswerView(list: ["있음", "없음"], needToHideLine: true)
-//        answerView.titleLabel.text = "ATM"
-//        return answerView
-//    }()
-    
     // MARK: 주차
     private lazy var parkingHeaderView: CategoryHeaderView = {
         let category = CategoryHeaderView()
@@ -160,19 +163,6 @@ class MainViewController: UIViewController {
         answerView.titleLabel.text = "외제차"
         return answerView
     }()
-    
-    // MARK: 구매력(소득수준)
-//    private lazy var incomeLevelHeaderView: CategoryHeaderView = {
-//        let category = CategoryHeaderView()
-//        category.titleLabel.text = "구매력(소득수준)"
-//        return category
-//    }()
-//
-//    private lazy var incomeLevel1View: AnswerView = {
-//        let answerView = AnswerView(list: ["많음", "보통", "적음"], needToHideLine: true)
-//        answerView.titleLabel.text = "외제차"
-//        return answerView
-//    }()
     
     // MARK: 환경관리
     private lazy var environmentHeaderView: CategoryHeaderView = {
@@ -302,7 +292,7 @@ class MainViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapCaptureButton), for: .touchUpInside)
         return button
     }()
-
+    
     private var captureImage = UIImage()
     private let viewForScrollViewContents = UIView()
     
@@ -348,7 +338,7 @@ class MainViewController: UIViewController {
     
     @objc private func keyboardWillShow(notification: NSNotification) {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-
+        
         if isMemoTextViewEditing && self.view.frame.origin.y == 0 {
             self.view.frame.origin.y -= keyboardSize.height
         }
@@ -370,14 +360,7 @@ class MainViewController: UIViewController {
         }
         baseSettingView.snp.makeConstraints {
             $0.width.equalTo(baseScrollView.frameLayoutGuide.snp.width)
-//            $0.height.equalTo(1750)
-//            $0.height.equalTo(1810)
-//            $0.height.equalTo(1870)
-//            $0.height.equalTo(1930)
-//            $0.height.equalTo(1990)
-//            $0.height.equalTo(2050)
             $0.height.equalTo(2095)
-//            $0.height.equalTo(2155)
             $0.top.equalTo(baseScrollView.contentLayoutGuide.snp.top)
             $0.bottom.equalTo(baseScrollView.contentLayoutGuide.snp.bottom)
             $0.leading.equalTo(baseScrollView.contentLayoutGuide.snp.leading)
@@ -386,15 +369,13 @@ class MainViewController: UIViewController {
         
         [
             titleLabel,
-            apartImageView, apartnameTextField,
+            apartImageView, apartnameTextField, initializeButton,
             educationHeaderView,
             education1View, education2View, education3View, education4View, education5View,
             aroundHeaderView,
             around1View, around2View, around3View, around4View,
             parkingHeaderView,
             parking1View, parking2View, parking3View, parking4View, parking5View,
-//            incomeLevelHeaderView,
-//            incomeLevel1View,
             environmentHeaderView,
             environment1View, environment2View, environment3View,
             securityHeaderView,
@@ -421,13 +402,20 @@ class MainViewController: UIViewController {
             $0.width.height.equalTo(30)
         }
         
+        initializeButton.snp.makeConstraints {
+            $0.centerY.equalTo(apartImageView)
+            $0.trailing.equalToSuperview().inset(16)
+            $0.height.equalTo(40)
+            $0.width.equalTo(50)
+        }
+        
         apartnameTextField.snp.makeConstraints {
             $0.centerY.equalTo(apartImageView)
             $0.leading.equalTo(apartImageView.snp.trailing).offset(10)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.trailing.equalTo(initializeButton.snp.leading).offset(-10)
             $0.height.equalTo(40)
         }
-        
+
         educationHeaderView.snp.makeConstraints {
             $0.top.equalTo(apartnameTextField.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview()
@@ -493,13 +481,7 @@ class MainViewController: UIViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
-        
-//        around5View.snp.makeConstraints {
-//            $0.top.equalTo(around4View.snp.bottom)
-//            $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(60)
-//        }
-        
+
         parkingHeaderView.snp.makeConstraints {
             $0.top.equalTo(around4View.snp.bottom)
             $0.leading.trailing.equalToSuperview()
@@ -535,18 +517,6 @@ class MainViewController: UIViewController {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(60)
         }
-        
-//        incomeLevelHeaderView.snp.makeConstraints {
-//            $0.top.equalTo(parking4View.snp.bottom)
-//            $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(45)
-//        }
-//
-//        incomeLevel1View.snp.makeConstraints {
-//            $0.top.equalTo(incomeLevelHeaderView.snp.bottom)
-//            $0.leading.trailing.equalToSuperview()
-//            $0.height.equalTo(60)
-//        }
         
         environmentHeaderView.snp.makeConstraints {
             $0.top.equalTo(parking5View.snp.bottom)
@@ -651,7 +621,7 @@ class MainViewController: UIViewController {
         }
         
         captureButton.snp.makeConstraints {
-//            $0.top.equalTo(answer18View.snp.bottom).offset(15)
+            //            $0.top.equalTo(answer18View.snp.bottom).offset(15)
             $0.top.equalTo(memoTextView.snp.bottom).offset(20)
             $0.height.equalTo(55)
             $0.leading.trailing.equalToSuperview().inset(16)
@@ -677,7 +647,13 @@ class MainViewController: UIViewController {
         }
     }
     
-    @objc private func didTapCaptureButton() {
+    @objc
+    private func didTapInitializeButton() {
+        showActionSheet()
+    }
+    
+    @objc
+    private func didTapCaptureButton() {
         captureAndShareCoworkShift { capturedImage in
 //            let shareCowkrShift:[Any] = [capturedImage]
 //            let activityViewController = UIActivityViewController(activityItems: shareCowkrShift, applicationActivities: nil)
@@ -692,13 +668,51 @@ class MainViewController: UIViewController {
         }
     }
     
+    private func showActionSheet() {
+        let actionSheet = UIAlertController(title: "선택사항 초기화", message: "선택사항을 초기화 하시겠어요?", preferredStyle: .alert)
+        initializeData()
+        let initialization = UIAlertAction(title: "초기화", style: .destructive) { action in
+            self.initializeData()
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        [initialization, cancel].forEach {
+            actionSheet.addAction($0)
+        }
+        present(actionSheet, animated: true)
+    }
+    
+    private func initializeData() {
+        let arrayOfSegmentedControl: [AnswerView] = [
+            education1View, education2View, education3View, education4View, education5View,
+            around1View, around2View, around3View, around4View,
+            parking1View, parking2View, parking3View, parking4View, parking5View,
+            environment1View, environment2View, environment3View,
+            security1View, security2View, security3View, security4View,
+            hardware1View, hardware2View,
+            facilities1View, facilities2View
+        ]
+        arrayOfSegmentedControl.forEach {
+            if $0.segmentedControl.selectedSegmentIndex != 0 {
+                $0.segmentedControl.selectedSegmentIndex = 0
+            }
+        }
+        apartnameTextField.text = ""
+        memoTextView.text = ""
+        memoTextView.snp.updateConstraints {
+            $0.height.equalTo(40)
+        }
+        baseSettingView.snp.updateConstraints {
+            $0.height.equalTo(2095)
+        }
+    }
+    
     func captureAndShareCoworkShift(_ completionHandler:@escaping (_ capturedImage: UIImage?) -> Void) {
-
+        
         overlayDarkView.isHidden = false
         activityIndicator.isHidden = false
         loadingLabel.isHidden = false
         captureButton.setTitle(Date().dateString, for: .normal)
-
+        
         // MARK: (1) 사진 찍고 그 이미지 넣음
         baseScrollView.takeScreenCapture({ captureImage -> Void in
             self.captureImage = captureImage!
@@ -739,7 +753,7 @@ class MainViewController: UIViewController {
             self.activityIndicator.isHidden = true
             self.loadingLabel.isHidden = true
             self.captureButton.setTitle("체크리스트 캡처 후 저장", for: .normal)
-
+            
             self.viewForScrollViewContents.snp.updateConstraints {
                 $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
                 $0.height.equalTo(0)
@@ -759,30 +773,17 @@ extension MainViewController: UIScrollViewDelegate {
 
 extension MainViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        let size = CGSize(width: view.frame.width, height: .infinity)
+        let size = CGSize(width: view.frame.width - 32, height: .infinity)
         let estimatedSize = textView.sizeThatFits(size)
-        
-//        let baseSettingViewSize: CGFloat = 1710 + estimatedSize.height
-//        let baseSettingViewSize: CGFloat = 1770 + estimatedSize.height
-//        let baseSettingViewSize: CGFloat = 1830 + estimatedSize.height
-//        let baseSettingViewSize: CGFloat = 1890 + estimatedSize.height
-//        let baseSettingViewSize: CGFloat = 1950 + estimatedSize.height
-//        let baseSettingViewSize: CGFloat = 2010 + estimatedSize.height
+
         let baseSettingViewSize: CGFloat = 2055 + estimatedSize.height
-//        let baseSettingViewSize: CGFloat = 2115 + estimatedSize.height
+        
         baseSettingView.snp.updateConstraints {
             $0.height.equalTo(baseSettingViewSize)
         }
         
         textView.constraints.forEach { (constraint) in
             constraint.constant = estimatedSize.height
-//            if estimatedSize.height <= 40 {
-//
-//            } else {
-//                if constraint.firstAttribute == .height {
-//                    constraint.constant = estimatedSize.height
-//                }
-//            }
         }
     }
     

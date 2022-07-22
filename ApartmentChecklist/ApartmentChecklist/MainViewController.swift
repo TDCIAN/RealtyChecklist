@@ -670,7 +670,6 @@ class MainViewController: UIViewController {
     
     private func showActionSheet() {
         let actionSheet = UIAlertController(title: "선택사항 초기화", message: "선택사항을 초기화 하시겠어요?", preferredStyle: .alert)
-        initializeData()
         let initialization = UIAlertAction(title: "초기화", style: .destructive) { action in
             self.initializeData()
         }
@@ -692,8 +691,8 @@ class MainViewController: UIViewController {
             facilities1View, facilities2View
         ]
         arrayOfSegmentedControl.forEach {
-            if $0.segmentedControl.selectedSegmentIndex != 0 {
-                $0.segmentedControl.selectedSegmentIndex = 0
+            if $0.segmentedControl.selectedSegmentIndex != -1 {
+                $0.segmentedControl.selectedSegmentIndex = -1
             }
         }
         apartnameTextField.text = ""

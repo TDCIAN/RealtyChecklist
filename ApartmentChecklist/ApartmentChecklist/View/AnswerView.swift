@@ -22,7 +22,7 @@ final class AnswerView: UIView {
     
     lazy var segmentedControl: UISegmentedControl = {
         let seg = UISegmentedControl(items: list)
-        seg.selectedSegmentIndex = 0
+        seg.selectedSegmentIndex = -1
         seg.selectedSegmentTintColor = .themeColor
         seg.setTitleTextAttributes(
             [
